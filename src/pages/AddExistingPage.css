@@ -1,0 +1,92 @@
+/* صفحة إضافة إعلان */
+.add-existing-page {
+  min-height: 915px;
+  background: var(--sc-White);
+}
+/* ----------------------header-------------------- */
+.add-existing-page .back-button{
+  margin-top: 24px;
+  margin-right: -16px;
+}
+
+
+.existing-form-title {
+  color: var(--black);
+}
+.existing-back-icon {
+  color: var(--black);
+}
+/* ----------------------form-------------------- */
+
+.add-existing-page .form-input:focus {
+  border-color: var(--black);
+}
+
+.add-existing-page .form-textarea:focus {
+  border-color: var(--sc-White);
+
+}
+
+.add-existing-page .plate-number:focus,
+.add-existing-page .plate-letter:focus {
+  border-color: var(--black);
+}
+
+.add-existing-page .radio-item input[type="radio"] {
+  accent-color: var(--black);
+}
+
+.add-existing-page .image-upload:hover {
+  border-color: var(--black);
+  background-color: var(--white);
+}
+
+.existing-submit {
+  background-color: var(--black);
+  color: var(--white);
+}
+
+/* تم حذف مؤشر التحميل */
+
+/* تحسين زر الإرسال عند التحميل */
+.submit-button:disabled {
+  opacity: 0.7;
+  cursor: not-allowed;
+  background: #999;
+}
+
+.submit-button:disabled:hover {
+  background: #999;
+  transform: none;
+}
+
+/* تم حذف رسالة التقدم المنفصلة */
+
+.add-existing-page .plate-letter {
+  padding: 12px;
+  border: 2px solid var(--sc-White);
+  border-radius: 8px;
+  font-family: 'IBM Plex Sans Arabic', sans-serif;
+  font-size: 16px;
+  background-color: var(--white);
+  width: 50px;
+  text-align: center;
+  direction: rtl;
+}
+
+.add-existing-page .plate-letter:focus {
+  outline: none;
+  border-color: var(--black);
+}
+
+.input-error {
+  border: 2px solid #e53935 !important;
+  background: #fff5f5;
+}
+.input-error-message {
+  color: #e53935;
+  font-size: 0.95em;
+  margin-top: 4px;
+  margin-bottom: 4px;
+  text-align: right;
+}

@@ -1,0 +1,165 @@
+/* صفحة المفقودات */
+.missing-page {
+  min-height: 915px;
+  background: var(--sc-red);
+  position: relative;
+}
+
+
+
+.page-header {
+  padding: 0;
+  padding-top: 40px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  position: relative;
+}
+
+.tab-button {
+  padding: 4px 10px;
+  border: none;
+  border-radius: 8px;
+  font-family: 'IBM Plex Sans Arabic', sans-serif;
+  cursor: pointer;
+  font-size: 18px;
+}
+
+.tab-button.active {
+  background-color: var(--black);
+  color: var(--white);
+}
+.missing-page .tab-button:not(.active) {
+  background: none;
+  color: var(--black);
+}
+
+
+.search-container {
+  padding: 16px;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.search-input {
+  flex: 1;
+  padding: 12px 15px 12px 10px;
+  border: none;
+  border-radius: 8px;
+  background-color: var(--white);
+  font-family: 'IBM Plex Sans Arabic', sans-serif;
+  font-size: 16px;
+  text-align: right;
+  direction: rtl;
+}
+
+
+.search-input:focus {
+  outline: none;
+}
+/* ///////////-------content---------/////////// */
+
+.page-content {
+  padding: 0 16px 0px 16px;
+  height: 750px;
+}
+
+.section-title {
+  color: var(--white);
+  font-family: 'IBM Plex Sans Arabic', sans-serif;
+  font-size: 16px;
+  font-weight: 700;
+  margin-bottom: 16px;
+  margin-right: 10px;
+  text-align: right;
+}
+
+.cars-list {
+  height: 580px;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  overflow: hidden;
+  overflow-y: scroll;
+  scrollbar-width: none;
+}
+
+.car-card {
+  background-color: var(--white);
+  border-radius: 8px;
+  padding: 4px;
+  display: flex;
+  gap: 10px;
+  align-items: center;
+}
+
+
+.car-image {
+  /* order: 2; */
+  width: 150px;
+  height: 100px;
+  border-radius: 4px;
+  overflow: hidden;
+  flex-shrink: 0;
+}
+
+.car-image img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.car-info {
+  margin: 0;
+  margin-right: 5px;
+  flex: 1;
+  text-align: right;
+}
+
+.car-name {
+  font-family: 'IBM Plex Sans Arabic', sans-serif;
+  font-size: 16px;
+  font-weight: 700;
+  color: var(--red);
+  margin-bottom: 4px;
+}
+
+.car-location {
+  font-family: 'IBM Plex Sans Arabic', sans-serif;
+  font-size: 14px;
+  color: var(--sc-black);
+  margin-bottom: 4px;
+}
+
+.car-plate {
+  font-family: 'IBM Plex Sans Arabic', sans-serif;
+  font-size: 14px;
+  color: var(--black);
+  font-weight: 700;
+}
+
+.add-button-container {
+  position: fixed;
+  bottom: 50px;
+  left: 50%;
+  transform: translateX(-50%);
+  z-index: 10;
+}
+
+.add-button {
+  width: 355px;
+  height: 55px;
+  border: none;
+  border-radius: 8px;
+  font-family: 'IBM Plex Sans Arabic', sans-serif;
+  font-size: 24px;
+  font-weight: 700;
+  cursor: pointer;
+}
+
+.missing-add {
+  background-color: var(--white);
+  color: var(--black);
+}
+

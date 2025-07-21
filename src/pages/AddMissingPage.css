@@ -1,0 +1,249 @@
+/* صفحة إضافة بلاغ */
+.add-missing-page {
+  min-height: 915px;
+  background: var(--sc-red);
+}
+
+/* ----------------------header-------------------- */
+.add-missing-page .back-button{
+  margin-top: 24px;
+  margin-right: -16px;
+}
+.form-header {
+  padding: 16px;
+}
+
+.form-title {
+  color: var(--black);
+  font-family: 'IBM Plex Sans Arabic', sans-serif;
+  font-size: 20px;
+  font-weight: 300;
+  position: absolute;
+  top: 43px;
+  right: 50px;
+  background-color: var(--white);
+}
+
+.form-container {
+  padding: 0px 16px;
+  padding-bottom: 20px;
+}
+
+.form-card {
+  background-color: var(--white);
+  margin-top: -70px;
+  border-radius: 8px;
+  padding: 24px;
+  height: 850px;
+  padding-top: 70px;
+  overflow: hidden;
+  overflow-y: scroll;
+}
+
+.section-header {
+  font-family: 'IBM Plex Sans Arabic', sans-serif;
+  font-size: 20px;
+  font-weight: 700;
+  color: var(--black);
+  margin-bottom: 5px;
+  text-align: right;
+}
+
+.form-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 10px;
+}
+
+.form-group {
+  margin-bottom: 5px;
+}
+
+.form-label {
+  display: block;
+  font-family: 'IBM Plex Sans Arabic', sans-serif;
+  font-weight: 300;
+  color: var(--black);
+  text-align: right;
+  margin-top: 3px;
+}
+
+.form-input {
+  width: 100%;
+  height: 36px;
+  padding: 4px;
+  border: 2px solid var(--sc-White);
+  border-radius: 8px;
+  font-family: 'IBM Plex Sans Arabic', sans-serif;
+  font-size: 16px;
+  text-align: right;
+  direction: rtl;
+  transition: border-color 0.3s ease, box-shadow 0.3s ease;
+}
+
+.form-input:focus {
+  outline: none;
+  border-color: var(--black);
+}
+
+.input-error {
+  border: 2px solid #e53935 !important;
+  background: #fff5f5;
+}
+.input-error-message {
+  color: #e53935;
+  font-size: 0.95em;
+  margin-top: 4px;
+  margin-bottom: 4px;
+  text-align: right;
+}
+
+.plate-input-group {
+  display: flex;
+  height: 36px;
+  gap: 8px;
+}
+.plate-input-group input{
+  width: 50%;
+}
+
+.plate-number {
+  flex: 1;
+  padding: 12px;
+  border: 2px solid var(--sc-White);
+  border-radius: 8px;
+  font-family: 'IBM Plex Sans Arabic', sans-serif;
+  font-size: 16px;
+  text-align: center;
+}
+
+.plate-letter {
+  padding: 12px;
+  border: 2px solid var(--sc-White);
+  border-radius: 8px;
+  font-family: 'IBM Plex Sans Arabic', sans-serif;
+  font-size: 16px;
+  background-color: var(--white);
+  width: 50px;
+  text-align: center;
+  direction: rtl;
+}
+
+.plate-letter:focus {
+  outline: none;
+  border-color: var(--black);
+}
+
+.form-textarea {
+  width: 100%;
+  padding: 12px;
+  border: 2px solid var(--sc-White);
+  border-radius: 8px;
+  font-family: 'IBM Plex Sans Arabic', sans-serif;
+  font-size: 16px;
+  text-align: right;
+  direction: rtl;
+  resize: vertical;
+  min-height: 100px;}
+
+.form-textarea:focus {
+  outline: none;
+  border-color: var(--black);
+}
+
+.radio-question {
+  margin-top: 12px;
+}
+
+.radio-label {
+  display: block;
+  font-family: 'IBM Plex Sans Arabic', sans-serif;
+  margin-bottom: 8px;
+  text-align: right;
+}
+
+.radio-group {
+  display: flex;
+  gap: 10px;
+  justify-content: flex-end;
+}
+
+.radio-item {
+  display: flex;
+  align-items: center;
+  gap: 5px;
+  cursor: pointer;
+}
+
+.radio-item input[type="radio"] {
+  width: 18px;
+  height: 18px;
+  accent-color: #ef4444;
+}
+
+.radio-item span {
+  font-family: 'IBM Plex Sans Arabic', sans-serif;
+  color: var(--black);
+}
+
+.image-upload {
+  border: 2px dashed var(--sc-black);
+  border-radius: 8px;
+  padding: 40px 20px;
+  text-align: center;
+  background-color: var(--white);
+  cursor: pointer;
+  transition: border-color 0.3s ease, background-color 0.3s ease;
+}
+
+.image-upload:hover {
+  border-color: #ef4444;
+  background-color: #fef2f2;
+}
+
+.image-upload-icon {
+  width: 48px;
+  height: 48px;
+  color: var(--sc-black);
+  margin: 0 auto 12px;
+}
+
+.image-upload-text {
+  color: var(--sc-black);
+  font-family: 'IBM Plex Sans Arabic', sans-serif;
+}
+
+.submit-button {
+  /* position: absolute; */
+  width: 100%;
+  padding: 16px 24px;
+  border: none;
+  border-radius: 8px;
+  font-family: 'IBM Plex Sans Arabic', sans-serif;
+  font-size: 24px;
+  font-weight: 700;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  margin-top: 20px;
+}
+
+.missing-submit {
+  background-color: #ef4444;
+  color: white;
+}
+
+/* تم حذف مؤشر التحميل */
+
+/* تحسين زر الإرسال عند التحميل */
+.submit-button:disabled {
+  opacity: 0.7;
+  cursor: not-allowed;
+  background: #999;
+}
+
+.submit-button:disabled:hover {
+  background: #999;
+  transform: none;
+}
+
+/* تم حذف رسالة التقدم المنفصلة */
