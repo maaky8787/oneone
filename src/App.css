@@ -6,14 +6,16 @@
 }
 
 body {
-  height: 100vh;
+  height: 100dvh;
+  min-height: 100dvh;
   font-family: 'IBM Plex Sans Arabic', sans-serif;
   direction: rtl;
   text-align: right;
 }
 /* الصفحة الرئيسية */
 .home-page {
-  height: 100vh;
+  height: 100dvh;
+  min-height: 100dvh;
   background: linear-gradient(to bottom, var(--white), var(--green));
   display: flex;
   flex-direction: column;
