@@ -9,8 +9,6 @@ import rateLimit from 'express-rate-limit';
 import dotenv from 'dotenv';
 dotenv.config();
 
-console.log('INDEX EMAIL_USER:', process.env.EMAIL_USER);
-console.log('INDEX EMAIL_PASS:', process.env.EMAIL_PASS ? '****' : 'NOT SET');
 
 const supabaseUrl = process.env.SUPABASE_URL;
 const supabaseKey = process.env.SUPABASE_KEY;
@@ -28,30 +26,6 @@ const limiter = rateLimit({
 });
 app.use(limiter);
 
-// اختبار حذف ملف من التخزين عند بدء السيرفر
-async function testStorageDelete() {
-  try {
-    console.log('=== اختبار حذف ملف من التخزين ===');
-
-    // محاولة حذف ملف غير موجود للتأكد من أن الكود يعمل
-    const { data: removeData, error: removeError } = await supabase.storage
-      .from('car-images')
-      .remove(['test-file-that-does-not-exist.jpg']);
-
-    console.log('نتيجة اختبار الحذف:', { data: removeData, error: removeError });
-
-    if (removeError) {
-      console.log('خطأ في اختبار الحذف:', removeError.message);
-    } else {
-      console.log('اختبار الحذف نجح - الكود يعمل بشكل صحيح');
-    }
-  } catch (error) {
-    console.log('خطأ في اختبار الحذف:', error);
-  }
-}
-
-// تشغيل الاختبار عند بدء السيرفر
-testStorageDelete();
 
 // إعداد البريد (تأكد من صحة البيانات)
 const transporter = nodemailer.createTransport({
@@ -444,9 +418,9 @@ app.post('/review-matches', async (req, res) => {
   }
 });
 
-// تشغيل السيرفر
-app.listen(4000, () => {
-  console.log('Server running on http://localhost:4000');
+const port = process.env.PORT || 4000;
+app.listen(port, () => {
+  console.log(`Server running on port ${port}`);
 });
 
 startCronJobs();

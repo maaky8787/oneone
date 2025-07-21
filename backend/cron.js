@@ -46,6 +46,7 @@ export function startCronJobs() {
 
   // مهمة أسبوعية/شهرية للبلاغات والإعلانات
   cron.schedule('* * * * *', async () => {
+    console.log('⏰ [CRON]:', new Date().toLocaleString());
     const now = new Date();
     const weekAgo = new Date(now.getTime() - 7 * 24 * 60 * 60 * 1000);
     const monthAgo = new Date(now.getTime() - 30 * 24 * 60 * 60 * 1000);
