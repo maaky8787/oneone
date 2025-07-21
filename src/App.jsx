@@ -10,10 +10,13 @@ import './variabels.css'
 function HomePage() {
   return (
       <div className="home-page">
+        <div className='title-box'>
         <h1 className="home-title">أهلاً بك..</h1>
-        <div className="home-subtitle">FindMyCar</div>
+          <div className='in-box'>
         <div className="inApp-Title">في تطبيق</div>
-        
+        <div className="home-subtitle">FindMyCar</div>
+        </div>
+        </div>
         <p className="home-description">
           تمكنك من الإبلاغ عن سيارة مفقودة أو إعلان FindMyCar
           سيارة تم العثور عليها، ويعمل على مطابقة البلاغات تلقائياً
