@@ -35,7 +35,7 @@
   margin-top: -70px;
   border-radius: 8px;
   padding: 24px;
-  height: 95vh;
+  height: 80vh;
   padding-top: 70px;
   overflow: hidden;
   overflow-y: scroll;
@@ -222,17 +222,16 @@
 }
 
 .submit-button {
-  /* position: absolute; */
-  width: 100%;
+  position: absolute;
+  width: 80%;
   padding: 16px 24px;
   border: none;
-  border-radius: 8px;
+  border-radius: 4px;
   font-family: 'IBM Plex Sans Arabic', sans-serif;
-  font-size: 24px;
+  font-size: 20px;
   font-weight: 700;
   cursor: pointer;
   transition: all 0.3s ease;
-  margin-top: 20px;
 }
 
 .missing-submit {
@@ -240,9 +239,6 @@
   color: white;
 }
 
-/* تم حذف مؤشر التحميل */
-
-/* تحسين زر الإرسال عند التحميل */
 .submit-button:disabled {
   opacity: 0.7;
   cursor: not-allowed;
@@ -253,5 +249,3 @@
   background: #999;
   transform: none;
 }
-
-/* تم حذف رسالة التقدم المنفصلة */
