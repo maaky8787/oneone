@@ -24,7 +24,7 @@ body {
   color: var(--black);
 }
 .title-box{
-  margin-top: 30%;
+  margin-top: 10%;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -51,7 +51,7 @@ body {
 }
 
 .home-description {
-  margin-top: 30%;
+  margin-top: 50%;
   text-align: right;
   direction: rtl;
   font-size: 11px;
