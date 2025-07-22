@@ -1,13 +1,10 @@
 /* صفحة إضافة إعلان */
 .add-existing-page {
-  min-height: 915px;
+  height: 100dvh;
+  min-height: 100dvh;
   background: var(--sc-White);
 }
 /* ----------------------header-------------------- */
-.add-existing-page .back-button{
-  margin-top: 24px;
-  margin-right: -16px;
-}
 
 
 .existing-form-title {
@@ -46,9 +43,6 @@
   color: var(--white);
 }
 
-/* تم حذف مؤشر التحميل */
-
-/* تحسين زر الإرسال عند التحميل */
 .submit-button:disabled {
   opacity: 0.7;
   cursor: not-allowed;
@@ -58,20 +52,6 @@
 .submit-button:disabled:hover {
   background: #999;
   transform: none;
-}
-
-/* تم حذف رسالة التقدم المنفصلة */
-
-.add-existing-page .plate-letter {
-  padding: 12px;
-  border: 2px solid var(--sc-White);
-  border-radius: 8px;
-  font-family: 'IBM Plex Sans Arabic', sans-serif;
-  font-size: 16px;
-  background-color: var(--white);
-  width: 50px;
-  text-align: center;
-  direction: rtl;
 }
 
 .add-existing-page .plate-letter:focus {

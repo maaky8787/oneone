@@ -6,7 +6,7 @@
 }
 
 /* ----------------------header-------------------- */
-.add-missing-page .back-button{
+ .back-button{
   margin-top: 24px;
   margin-right: -16px;
 }
@@ -26,21 +26,21 @@
 }
 
 .form-container {
-  padding: 0px 16px;
-  padding-bottom: 20px;
+  padding: 0px 16px;  
+  height: 77vh;
 }
 
 .form-card {
   background-color: var(--white);
   margin-top: -70px;
+  height: 77vh;
   border-radius: 8px;
   padding: 24px;
-  height: 80vh;
-  padding-top: 70px;
+  padding-top: 10px;
   overflow: hidden;
-  overflow-y: scroll;
 }
 .form-section{
+  padding-top: 40px;
   height: 70vh;
   overflow: hidden;
   overflow: scroll;
@@ -68,8 +68,8 @@
 .form-label {
   display: block;
   font-family: 'IBM Plex Sans Arabic', sans-serif;
-  font-size: 16px;
-  font-weight: 300;
+  font-size: 14px;
+  font-weight: 700;
   color: var(--black);
   text-align: right;
   margin-top: 3px;
@@ -142,23 +142,6 @@
   border-color: var(--black);
 }
 
-.form-textarea {
-  width: 100%;
-  padding: 12px;
-  border: 2px solid var(--sc-White);
-  border-radius: 8px;
-  font-family: 'IBM Plex Sans Arabic', sans-serif;
-  font-size: 16px;
-  text-align: right;
-  direction: rtl;
-  resize: vertical;
-  min-height: 100px;}
-
-.form-textarea:focus {
-  outline: none;
-  border-color: var(--black);
-}
-
 .radio-question {
   margin-top: 12px;
 }
@@ -204,18 +187,6 @@
   transition: border-color 0.3s ease, background-color 0.3s ease;
 }
 
-.image-upload:hover {
-  border-color: #ef4444;
-  background-color: #fef2f2;
-}
-
-.image-upload-icon {
-  width: 48px;
-  height: 48px;
-  color: var(--sc-black);
-  margin: 0 auto 12px;
-}
-
 .image-upload-text {
   color: var(--sc-black);
   font-family: 'IBM Plex Sans Arabic', sans-serif;
@@ -231,7 +202,7 @@
   font-size: 20px;
   font-weight: 700;
   cursor: pointer;
-  transition: all 0.3s ease;
+  margin-top: 50px;
 }
 
 .missing-submit {
