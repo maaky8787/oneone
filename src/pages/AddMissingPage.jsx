@@ -309,7 +309,7 @@ function AddMissingPage() {
                           setPlateNum(onlyDigits);
                         }}
                         className="plate-number"
-                        placeholder="9867"
+                        placeholder="1111"
                         maxLength={8}
                         required
                       />
@@ -320,7 +320,7 @@ function AddMissingPage() {
                           setPlateLetter(e.target.value.slice(0, 4));
                         }}
                         className="plate-letter"
-                        placeholder="ع"
+                        placeholder="خ4"
                         maxLength={4}
                         required
                       />
@@ -360,9 +360,7 @@ function AddMissingPage() {
                     required
                   />
                 </div>
-              </div>
-              {/* بيانات التواصل */}
-              <div className="form-section">
+              {/* بيانات التواصل */}        
                 <h2 className="section-header">بيانات التواصل</h2>
                 <div className="form-group">
                   <label className="form-label">رقم للتواصل</label>

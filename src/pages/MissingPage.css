@@ -128,7 +128,7 @@
 
 .car-name {
   font-family: 'IBM Plex Sans Arabic', sans-serif;
-  font-size: 16px;
+  font-size: 14px;
   font-weight: 700;
   color: var(--red);
   margin-bottom: 4px;
@@ -136,14 +136,14 @@
 
 .car-location {
   font-family: 'IBM Plex Sans Arabic', sans-serif;
-  font-size: 12px;
+  font-size: 10px;
   color: var(--sc-black);
   margin-bottom: 4px;
 }
 
 .car-plate {
   font-family: 'IBM Plex Sans Arabic', sans-serif;
-  font-size: 12px;
+  font-size: 10px;
   color: var(--black);
   font-weight: 700;
 }

@@ -1,6 +1,7 @@
 /* صفحة إضافة بلاغ */
 .add-missing-page {
-  min-height: 915px;
+  height: 100dvh;
+  min-height: 100dvh;
   background: var(--sc-red);
 }
 
@@ -16,10 +17,10 @@
 .form-title {
   color: var(--black);
   font-family: 'IBM Plex Sans Arabic', sans-serif;
-  font-size: 20px;
+  font-size: 16px;
   font-weight: 300;
   position: absolute;
-  top: 43px;
+  top: 47px;
   right: 50px;
   background-color: var(--white);
 }
@@ -34,12 +35,17 @@
   margin-top: -70px;
   border-radius: 8px;
   padding: 24px;
-  height: 850px;
+  height: 95vh;
   padding-top: 70px;
   overflow: hidden;
   overflow-y: scroll;
 }
-
+.form-section{
+  height: 70vh;
+  overflow: hidden;
+  overflow: scroll;
+  scrollbar-width: none;
+}
 .section-header {
   font-family: 'IBM Plex Sans Arabic', sans-serif;
   font-size: 20px;
@@ -62,6 +68,7 @@
 .form-label {
   display: block;
   font-family: 'IBM Plex Sans Arabic', sans-serif;
+  font-size: 16px;
   font-weight: 300;
   color: var(--black);
   text-align: right;
@@ -75,7 +82,8 @@
   border: 2px solid var(--sc-White);
   border-radius: 8px;
   font-family: 'IBM Plex Sans Arabic', sans-serif;
-  font-size: 16px;
+  font-size: 12px;
+  font-weight: 700;
   text-align: right;
   direction: rtl;
   transition: border-color 0.3s ease, box-shadow 0.3s ease;
@@ -104,12 +112,13 @@
   gap: 8px;
 }
 .plate-input-group input{
-  width: 50%;
+  width: 40%;
+  font-size: 12px;
 }
 
 .plate-number {
   flex: 1;
-  padding: 12px;
+  padding: 5px;
   border: 2px solid var(--sc-White);
   border-radius: 8px;
   font-family: 'IBM Plex Sans Arabic', sans-serif;
@@ -118,13 +127,12 @@
 }
 
 .plate-letter {
-  padding: 12px;
+  padding: 5px;
   border: 2px solid var(--sc-White);
   border-radius: 8px;
   font-family: 'IBM Plex Sans Arabic', sans-serif;
   font-size: 16px;
   background-color: var(--white);
-  width: 50px;
   text-align: center;
   direction: rtl;
 }
