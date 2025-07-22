@@ -86,11 +86,9 @@ function CarDetailsModal({ car, onClose }) {
           </div>
           <div className="details">
             {" "}
-            <p> سياره رقم في القائمه </p>
-            <pre className="pre">  :</pre>
-            <p> {(car.id)} </p>
+            <p> سياره رقم {(car.id)} في القائمه</p>
           </div>
-            <p style={{marginRight:"5px",fontSize:"12px",marginTop:"10px"}}> هذا الرقم يشمل السيارات التي رجعت لاصحابها وتم حذفها من النظام </p>
+            <p style={{marginRight:"5px",fontSize:"12px",marginTop:"10px"}}> هذا الرقم يشمل حتي السيارات التي رجعت لاصحابها وتم حذفها من البلاغات والاعلانات </p>
         </div>
       </div>
     </div>
