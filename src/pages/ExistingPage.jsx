@@ -84,8 +84,7 @@ const formatCreatedAt = (dateString) => {
 
       {/* Content */}
       <div className="page-content">
-        <h2 className="section-title">قائمة الموجودات</h2>
-        <div style={{textAlign: 'center', fontWeight: 'bold', marginBottom: '10px'}}>عدد الإعلانات: {existingCars.length}</div>
+        <h2 className="section-title">قائمة الموجودات : {existingCars.length}</h2>
         <div className="cars-list">
           {existingCars.slice().reverse()
             .filter(car =>
