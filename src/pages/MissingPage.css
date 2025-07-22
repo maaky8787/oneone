@@ -18,7 +18,7 @@
   /* background-color: blue; */
   position: absolute;
   display: flex;
-  gap: 25%;
+  gap: 10%;
   right: 25%;
   top: 40px;
   
@@ -47,7 +47,7 @@
   padding: 16px;
   display: flex;
   align-items: center;
-  gap: 10px;
+
 }
 
 .search-input {
@@ -160,8 +160,8 @@
 }
 
 .add-button {
-  width: 355px;
-  height: 55px;
+  width: 90vw;
+  padding: 10px 0px;
   border: none;
   border-radius: 8px;
   font-family: 'IBM Plex Sans Arabic', sans-serif;

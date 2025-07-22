@@ -34,19 +34,19 @@ body {
 }
  .home-title {
   margin-right: -90px;
-  font-size: 48px;
+  font-size: 35px;
   font-weight:bold;
 }
 .inApp-Title{
   margin-left: 10px;
-  font-size: 24px;
+  font-size: 20px;
 }
 .home-subtitle {
-  background-color: #22c55e;
+  background-color: var(--green);
   color: var(--sc-White);
   padding: 1px 16px;
   border-radius: 4px;
-  font-size: 24px;
+  font-size: 21px;
   font-weight: 700;
 }
 
@@ -54,7 +54,7 @@ body {
   margin-top: 30%;
   text-align: right;
   direction: rtl;
-  font-size: 14px;
+  font-size: 12px;
   margin-bottom: 20px;
   max-width: 80%;
 }
@@ -88,7 +88,7 @@ body {
   left: 2%;
   background-color: var(--green);
   color: var(--white);
-  font-size: 13px;
+  font-size: 10px;
 }
 
 .home-footer {
