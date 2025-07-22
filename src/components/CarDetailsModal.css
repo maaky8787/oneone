@@ -18,7 +18,7 @@
   border-radius: 8px;
   padding: 5px;
   width: 90vw;
-  height: 92vh;
+  height: 85vh;
   margin-top: -5%;
   position: relative;
   text-align: right;
@@ -59,10 +59,10 @@
 .details{
   display: flex;
   align-items: center;
-  padding: 5px 0px;
+  padding: 3px 0px;
   margin-top: 1%;
   padding-right: 10px;
-  border-radius: 8px;
+  border-radius: 4px;
   background: rgb(238, 238, 238);
 }
 .details p{
