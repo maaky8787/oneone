@@ -8,19 +8,18 @@
 
 .page-header {
   padding: 0;
-  padding-top: 40px;
+  padding-top: 25px;
   display: flex;
   align-items: center;
   justify-content: space-between;
   position: relative;
 }
 .header-tabs{
-  /* background-color: blue; */
   position: absolute;
   display: flex;
   gap: 10%;
   right: 25%;
-  top: 40px;
+  top: 25px;
   
 }
 .tab-button {
@@ -44,7 +43,7 @@
 
 .search-container {
   width: 100vw;
-  padding: 16px;
+  padding: 5px 16px;
   display: flex;
   align-items: center;
 
