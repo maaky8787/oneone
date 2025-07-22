@@ -31,7 +31,7 @@ function CarDetailsModal({ car, onClose }) {
           <div className="details">
             {" "}
             <p>اللون</p>
-            <pre className="pre">     :</pre>
+            <pre className="pre">    :</pre>
             <p> {car.color} </p>
           </div>
           <div className="details">
@@ -58,7 +58,7 @@ function CarDetailsModal({ car, onClose }) {
           <div className="details">
             {" "}
             <p>الموقع</p>
-            <pre className="pre">    :</pre>
+            <pre className="pre">   :</pre>
             <p> {car.location} </p>
           </div>
 
@@ -72,7 +72,7 @@ function CarDetailsModal({ car, onClose }) {
           <div className="details">
             {" "}
             <p>رقم اضافي</p>
-            <pre className="pre">   :</pre>
+            <pre className="pre">  :</pre>
             <p className="car-phone-secondary">
               {(!car.phone_secondary || car.phone_secondary === '0' || car.phone_secondary.length < 7) ? 'لا يوجد' : car.phone_secondary}
             </p>
@@ -81,7 +81,7 @@ function CarDetailsModal({ car, onClose }) {
           <div className="details">
             {" "}
             <p>تاريخ النشر</p>
-            <pre className="pre">   :</pre>
+            <pre className="pre">  :</pre>
             <p> {formatCreatedAt(car.created_at)} </p>
           </div>
           <div className="details">

@@ -9,6 +9,7 @@ function MatchesPage() {
   const [matches, setMatches] = useState([]);
   const [loading, setLoading] = useState(true);
   const navigate = useNavigate();
+  const API_URL = import.meta.env.VITE_API_URL;
 
   // دالة لجلب البيانات
   const fetchMatches = async () => {
@@ -16,7 +17,7 @@ function MatchesPage() {
     console.log('جاري جلب البيانات من السيرفر...');
     
     try {
-      const response = await fetch('http://localhost:4000/get-matches');
+      const response = await fetch(`${API_URL}/get-matches`);
       const result = await response.json();
       
       if (!response.ok) {

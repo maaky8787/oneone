@@ -6,6 +6,8 @@ import { supabase } from '../supabase';
 import { v4 as uuidv4 } from 'uuid'; // تحتاج تثبيت uuid: npm install uuid
 import React from 'react'; // Import React for useEffect
 
+const API_URL = import.meta.env.VITE_API_URL;
+
 function AddMissingPage() {
   const [formData, setFormData] = useState({
     car_name: '',
@@ -213,7 +215,7 @@ function AddMissingPage() {
       }
       
       // إرسال البلاغ إلى السيرفر
-      const response = await fetch('http://localhost:4000/add-lost', {
+      const response = await fetch(`${API_URL}/add-lost`, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify(dataToSend)

@@ -15,6 +15,7 @@ const supabaseKey = process.env.SUPABASE_KEY;
 const supabase = createClient(supabaseUrl, supabaseKey);
 
 const app = express();
+app.set('trust proxy', 1); // ضروري عند النشر على Railway/Vercel/Heroku
 app.use(express.json());
 app.use(cors({ origin: [process.env.ALLOWED_ORIGIN || 'http://localhost:5173'] }));
 
