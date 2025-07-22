@@ -78,8 +78,7 @@ function MissingPage() {
 
         {/* Content */}
         <div className="page-content">
-          <h2 className="section-title">قائمة المفقودات</h2>
-          <div style={{textAlign: 'center', fontWeight: 'bold', marginBottom: '10px'}}>عدد البلاغات: {missingCars.length}</div>
+          <h2 className="section-title">قائمة المفقودات : {missingCars.length}</h2>
           <div className="cars-list">
             {missingCars.slice().reverse()
               .filter(car =>

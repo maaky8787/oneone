@@ -23,15 +23,6 @@
   margin-right: 20px;
 }
 
-.header-tabs{
-  display: flex;
-  align-items: center;
-  position: absolute;
-  top: 40px;
-  margin-right: 25%;
-  gap: 35px;
-  
-}
 
 .existing-page .tab-button.active {
   background-color: var(--black);

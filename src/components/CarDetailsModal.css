@@ -3,7 +3,7 @@
   top: 0;
   left: 0;
   width: 100vw;
-  height: 915px;
+  height: 100vh;
   background: rgba(0,0,0,0.5);
   display: flex;
   align-items: center;
@@ -16,9 +16,10 @@
   flex-direction: column;
   background: var(--white);
   border-radius: 8px;
-  padding: 32px 24px 24px 24px;
-  width: 380px;
-  height: 850px;
+  padding: 5px;
+  width: 90vw;
+  height: 92vh;
+  margin-top: -5%;
   position: relative;
   text-align: right;
 }
@@ -39,11 +40,11 @@
 }
 
 .car-image-modal {
-  margin-bottom: 16px;
-  margin-top: -22px;
-  margin-right: -13px;
-  width: 360px;
-  height: 250px;
+  align-items: center;
+  margin: 0;
+  width: 100%;
+  height: 40%;
+  background-color: blue;
 }
 
 .car-image-modal img {
@@ -52,11 +53,14 @@
   object-fit: cover;
   border-radius: 4px;
 }
+.car-info-modal{
+  padding: 0 10px;
+}
 .details{
   display: flex;
   align-items: center;
-  margin-top: 10px;
-  padding: 10px 0px;
+  padding: 5px 0px;
+  margin-top: 1%;
   padding-right: 10px;
   border-radius: 8px;
   background: rgb(238, 238, 238);

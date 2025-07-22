@@ -1,5 +1,6 @@
 .matches-page {
-  min-height: 915px;
+  height: 100dvh;
+  min-height: 100dvh;
   background: var(--sc-White);
   position: relative;
 }
@@ -12,11 +13,12 @@
 }
 
 .page-header h1 {
+  position: absolute;
+  right: 55px;
+  top: 42px;
   color: var(--black);
-  font-size: 24px;
-  font-weight: 300;
-  margin-left: 140px;
-  margin-top: -10px;
+  font-size: 20px;
+  font-weight: 700;
 }
 .matches-list {
   padding: 16px;
