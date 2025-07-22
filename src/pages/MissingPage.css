@@ -8,17 +8,20 @@
 
 .page-header {
   padding: 0;
-  padding-top: 25px;
   display: flex;
   align-items: center;
   justify-content: space-between;
   position: relative;
 }
+.back-icon {
+  margin-right: 30px;
+}
+
 .header-tabs{
   position: absolute;
   display: flex;
   gap: 10%;
-  right: 25%;
+  right: 28%;
   top: 25px;
   
 }
@@ -28,7 +31,7 @@
   border-radius: 8px;
   font-family: 'IBM Plex Sans Arabic', sans-serif;
   cursor: pointer;
-  font-size: 18px;
+  font-size: 15px;
 }
 
 .tab-button.active {
