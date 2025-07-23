@@ -3,873 +3,309 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>إدارة التخزين - FindMyCar</title>
+    <title>لوحة إدارة FindMyCar</title>
     <script src="https://unpkg.com/@supabase/supabase-js@2"></script>
     <style>
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
-        
         body {
             font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-            min-height: 100vh;
-            padding: 20px;
+            background: #f4f6fa;
+            margin: 0;
+            padding: 0;
         }
-        
         .container {
             max-width: 1200px;
-            margin: 0 auto;
-            background: white;
+            margin: 30px auto;
+            background: #fff;
             border-radius: 15px;
-            box-shadow: 0 10px 30px rgba(0,0,0,0.2);
-            overflow: hidden;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.08);
+            padding: 30px 20px 40px 20px;
         }
-        
-        .header {
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-            color: white;
-            padding: 30px;
-            text-align: center;
-        }
-        
-        .header h1 {
-            font-size: 2.5rem;
+        h1, h2 {
+            color: #4a5fc1;
             margin-bottom: 10px;
         }
-        
-        .header p {
-            font-size: 1.1rem;
-            opacity: 0.9;
-        }
-        
-        .content {
-            padding: 30px;
-        }
-        
         .stats {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-            gap: 20px;
+            display: flex;
+            gap: 30px;
             margin-bottom: 30px;
         }
-        
-        .stat-card {
-            background: #f8f9fa;
-            padding: 20px;
-            border-radius: 10px;
+        .stat {
+            background: #e9ecef;
+            border-radius: 8px;
+            padding: 18px 30px;
             text-align: center;
-            border-left: 4px solid #667eea;
+            min-width: 160px;
         }
-        
-        .stat-number {
+        .stat .num {
             font-size: 2rem;
             font-weight: bold;
-            color: #667eea;
+            color: #4a5fc1;
         }
-        
-        .stat-label {
-            color: #666;
-            margin-top: 5px;
+        .stat .label {
+            color: #555;
+            font-size: 1rem;
         }
-        
-        .controls {
-            display: flex;
-            gap: 15px;
-            margin-bottom: 30px;
-            flex-wrap: wrap;
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-bottom: 40px;
+            background: #fff;
         }
-        
+        th, td {
+            border: 1px solid #e0e0e0;
+            padding: 10px 8px;
+            text-align: center;
+        }
+        th {
+            background: #f4f6fa;
+            color: #4a5fc1;
+        }
+        tr:nth-child(even) {
+            background: #f9f9fb;
+        }
+        img.thumb {
+            width: 60px;
+            height: 60px;
+            object-fit: cover;
+            border-radius: 6px;
+            border: 1px solid #ddd;
+        }
         .btn {
-            padding: 12px 24px;
+            padding: 7px 18px;
             border: none;
-            border-radius: 8px;
+            border-radius: 6px;
             cursor: pointer;
             font-size: 1rem;
-            font-weight: 500;
-            transition: all 0.3s ease;
+            margin: 2px;
         }
-        
-        .btn-primary {
-            background: #667eea;
-            color: white;
-        }
-        
-        .btn-primary:hover {
-            background: #5a6fd8;
-            transform: translateY(-2px);
-        }
-        
-        .btn-danger {
-            background: #dc3545;
-            color: white;
-        }
-        
-        .btn-danger:hover {
-            background: #c82333;
-            transform: translateY(-2px);
-        }
-        
-        .btn-success {
-            background: #28a745;
-            color: white;
-        }
-        
-        .btn-success:hover {
-            background: #218838;
-            transform: translateY(-2px);
-        }
-        
-        .files-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
-            gap: 20px;
-        }
-        
-        .file-card {
-            background: #f8f9fa;
-            border-radius: 10px;
-            padding: 20px;
-            border: 2px solid transparent;
-            transition: all 0.3s ease;
-            position: relative;
-        }
-        
-        .file-card:hover {
-            border-color: #667eea;
-            transform: translateY(-5px);
-            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
-        }
-        
-        .file-image {
-            width: 100%;
-            height: 200px;
-            object-fit: cover;
-            border-radius: 8px;
-            margin-bottom: 15px;
-        }
-        
-        .file-name {
-            font-weight: bold;
-            color: #333;
-            margin-bottom: 10px;
-            word-break: break-all;
-        }
-        
-        .file-size {
-            color: #666;
-            font-size: 0.9rem;
-            margin-bottom: 15px;
-        }
-        
-        .file-actions {
-            display: flex;
-            gap: 10px;
-        }
-        
-        .loading {
+        .btn-danger { background: #dc3545; color: #fff; }
+        .btn-danger:hover { background: #b52a37; }
+        .btn-primary { background: #4a5fc1; color: #fff; }
+        .btn-primary:hover { background: #35448c; }
+        .btn-success { background: #28a745; color: #fff; }
+        .btn-success:hover { background: #1e7e34; }
+        .loading, .error, .success {
             text-align: center;
-            padding: 50px;
-            color: #666;
+            margin: 20px 0;
+            font-size: 1.1rem;
         }
-        
-        .error {
-            background: #f8d7da;
-            color: #721c24;
-            padding: 15px;
-            border-radius: 8px;
-            margin-bottom: 20px;
-        }
-        
-        .success {
-            background: #d4edda;
-            color: #155724;
-            padding: 15px;
-            border-radius: 8px;
-            margin-bottom: 20px;
-        }
-        
-        .modal {
-            display: none;
-            position: fixed;
-            z-index: 1000;
-            left: 0;
-            top: 0;
-            width: 100%;
-            height: 100%;
-            background-color: rgba(0,0,0,0.5);
-        }
-        
-        .modal-content {
-            background-color: white;
-            margin: 15% auto;
-            padding: 30px;
-            border-radius: 15px;
-            width: 90%;
-            max-width: 500px;
-            text-align: center;
-        }
-        
-        .modal-buttons {
-            display: flex;
-            gap: 15px;
-            justify-content: center;
-            margin-top: 20px;
-        }
-        
-        @media (max-width: 768px) {
-            .header h1 {
-                font-size: 2rem;
-            }
-            
-            .controls {
-                flex-direction: column;
-            }
-            
-            .files-grid {
-                grid-template-columns: 1fr;
-            }
+        .error { color: #b52a37; }
+        .success { color: #28a745; }
+        @media (max-width: 900px) {
+            .stats { flex-direction: column; gap: 10px; }
+            .container { padding: 10px; }
+            th, td { font-size: 0.95rem; }
         }
     </style>
 </head>
 <body>
-    <div class="container">
-        <div class="header">
-            <h1>إدارة التخزين</h1>
-            <p>FindMyCar - عرض وإدارة ملفات الصور</p>
-        </div>
-        
-        <div class="content">
-            <div id="message"></div>
-            
-            <!-- إحصائيات عامة -->
-            <div class="stats">
-                <div class="stat-card">
-                    <div class="stat-number" id="totalFiles">0</div>
-                    <div class="stat-label">إجمالي الملفات</div>
-                </div>
-                <div class="stat-card">
-                    <div class="stat-number" id="totalSize">0 MB</div>
-                    <div class="stat-label">إجمالي الحجم</div>
-                </div>
-                <div class="stat-card">
-                    <div class="stat-number" id="selectedFiles">0</div>
-                    <div class="stat-label">الملفات المحددة</div>
-                </div>
-            </div>
-            
-            <!-- أزرار التحكم في الملفات -->
-            <div class="controls">
-                <button class="btn btn-primary" onclick="loadFiles()">تحديث الملفات</button>
-                <button class="btn btn-success" onclick="selectAll()">تحديد الكل</button>
-                <button class="btn btn-danger" onclick="deleteSelected()">حذف المحدد</button>
-                <button class="btn btn-danger" onclick="deleteAll()">حذف الكل</button>
-                <button class="btn btn-primary" onclick="reviewMatches()">مراجعة التطابقات الآن</button>
-            </div>
-            
-            <!-- قسم البلاغات -->
-            <div style="margin-top: 40px;">
-                <h2 style="color: #667eea; margin-bottom: 20px;">إدارة البلاغات المفقودة</h2>
-                <div class="controls">
-                    <button class="btn btn-primary" onclick="loadLosts()">تحميل البلاغات</button>
-                    <button class="btn btn-danger" onclick="deleteAllLosts()">حذف جميع البلاغات</button>
-                </div>
-                <div id="lostsContainer">
-                    <div class="loading">اضغط "تحميل البلاغات" لعرض البلاغات</div>
-                </div>
-            </div>
-            
-            <!-- قسم الإعلانات -->
-            <div style="margin-top: 40px;">
-                <h2 style="color: #667eea; margin-bottom: 20px;">إدارة الإعلانات الموجودة</h2>
-                <div class="controls">
-                    <button class="btn btn-primary" onclick="loadFounds()">تحميل الإعلانات</button>
-                    <button class="btn btn-danger" onclick="deleteAllFounds()">حذف جميع الإعلانات</button>
-                </div>
-                <div id="foundsContainer">
-                    <div class="loading">اضغط "تحميل الإعلانات" لعرض الإعلانات</div>
-                </div>
-            </div>
-            
-            <!-- قسم الملفات -->
-            <div style="margin-top: 40px;">
-                <h2 style="color: #667eea; margin-bottom: 20px;">إدارة ملفات الصور</h2>
-                <div id="filesContainer">
-                    <div class="loading">جاري التحميل...</div>
-                </div>
-            </div>
-        </div>
+<div class="container">
+    <h1>لوحة إدارة FindMyCar</h1>
+    <div class="stats">
+        <div class="stat"><div class="num" id="lostsCount">0</div><div class="label">عدد المفقودات</div></div>
+        <div class="stat"><div class="num" id="foundsCount">0</div><div class="label">عدد الموجودات</div></div>
+        <div class="stat"><div class="num" id="orphanCount">0</div><div class="label">صور غير مرتبطة</div></div>
     </div>
-    
-    <!-- Modal for confirmation -->
-    <div id="confirmModal" class="modal">
-        <div class="modal-content">
-            <h3 id="modalTitle">تأكيد الحذف</h3>
-            <p id="modalMessage">هل أنت متأكد من حذف الملفات المحددة؟</p>
-            <div class="modal-buttons">
-                <button class="btn btn-danger" onclick="confirmDelete()">نعم، احذف</button>
-                <button class="btn btn-primary" onclick="closeModal()">إلغاء</button>
-            </div>
-        </div>
-    </div>
+    <div id="message"></div>
+    <h2>المفقودات</h2>
+    <button class="btn btn-primary" onclick="loadLosts()">تحديث المفقودات</button>
+    <button class="btn btn-danger" onclick="deleteAllLosts()">حذف جميع المفقودات</button>
+    <div id="lostsTable"></div>
+    <h2>الموجودات</h2>
+    <button class="btn btn-primary" onclick="loadFounds()">تحديث الموجودات</button>
+    <button class="btn btn-danger" onclick="deleteAllFounds()">حذف جميع الموجودات</button>
+    <div id="foundsTable"></div>
+    <h2>صور غير مرتبطة بأي بلاغ أو إعلان</h2>
+    <button class="btn btn-primary" onclick="loadOrphanImages()">تحديث الصور</button>
+    <button class="btn btn-danger" onclick="deleteAllOrphans()">حذف جميع الصور غير المرتبطة</button>
+    <div id="orphansTable"></div>
+</div>
+<script>
+const SUPABASE_URL = 'https://dwlnicvwnnrrxfrodxrb.supabase.co';
+const SUPABASE_ANON_KEY = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImR3bG5pY3Z3bm5ycnhmcm9keHJiIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NTI0NDIzMzgsImV4cCI6MjA2ODAxODMzOH0.lrFsegUPl3FWbY1wzcYrBln7qIa_1eGm74m0Xsix9I8';
+const supabase = window.supabase.createClient(SUPABASE_URL, SUPABASE_ANON_KEY);
 
-    <script>
-        // Supabase configuration - استبدل هذه القيم بقيمك
-        const SUPABASE_URL = 'https://dwlnicvwnnrrxfrodxrb.supabase.co';
-        const SUPABASE_ANON_KEY = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImR3bG5pY3Z3bm5ycnhmcm9keHJiIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NTI0NDIzMzgsImV4cCI6MjA2ODAxODMzOH0.lrFsegUPl3FWbY1wzcYrBln7qIa_1eGm74m0Xsix9I8';
-        
-        const supabase = window.supabase.createClient(SUPABASE_URL, SUPABASE_ANON_KEY);
-        
-        let files = [];
-        let selectedFiles = new Set();
-        let losts = [];
-        let founds = [];
-        
-        // Load files on page load
-        document.addEventListener('DOMContentLoaded', function() {
-            loadFiles();
-        });
-        
-        async function loadFiles() {
-            try {
-                showMessage('جاري تحميل الملفات...', 'info');
-                
-                console.log('محاولة جلب الملفات من البكت car-images...');
-                
-                // طريقة بديلة لجلب الملفات
-                const { data, error } = await supabase.storage
-                    .from('car-images')
-                    .list();
-                
-                console.log('نتيجة الاستعلام:', { data, error });
-                console.log('عدد الملفات في data:', data ? data.length : 0);
-                
-                if (error) {
-                    console.error('خطأ في الاستعلام:', error);
-                    throw error;
-                }
-                
-                files = data || [];
-                selectedFiles.clear();
-                
-                console.log('الملفات التي تم جلبها:', files);
-                console.log('تفاصيل كل ملف:', files.map(f => ({ name: f.name, size: f.metadata?.size })));
-                
-                updateStats();
-                renderFiles();
-                showMessage(`تم تحميل ${files.length} ملف بنجاح`, 'success');
-                
-            } catch (error) {
-                console.error('Error loading files:', error);
-                showMessage(`خطأ في تحميل الملفات: ${error.message}`, 'error');
-            }
-        }
-        
-        function renderFiles() {
-            const container = document.getElementById('filesContainer');
-            
-            if (files.length === 0) {
-                container.innerHTML = '<div class="loading">لا توجد ملفات في التخزين</div>';
-                return;
-            }
-            
-            container.innerHTML = `
-                <div class="files-grid">
-                    ${files.map(file => `
-                        <div class="file-card">
-                            <input type="checkbox" 
-                                   id="file-${file.name}" 
-                                   onchange="toggleFileSelection('${file.name}')"
-                                   ${selectedFiles.has(file.name) ? 'checked' : ''}>
-                            <label for="file-${file.name}">
-                                <img src="${getFileUrl(file.name)}" 
-                                     alt="${file.name}" 
-                                     class="file-image"
-                                     onerror="this.src='data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMjAwIiBoZWlnaHQ9IjIwMCIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj48cmVjdCB3aWR0aD0iMTAwJSIgaGVpZ2h0PSIxMDAlIiBmaWxsPSIjZGRkIi8+PHRleHQgeD0iNTAlIiB5PSI1MCUiIGZvbnQtZmFtaWx5PSJBcmlhbCIgZm9udC1zaXplPSIxNCIgZmlsbD0iIzk5OSIgdGV4dC1hbmNob3I9Im1pZGRsZSIgZHk9Ii4zZW0iPk5vIEltYWdlPC90ZXh0Pjwvc3ZnPg=='">
-                            </label>
-                            <div class="file-name">${file.name}</div>
-                            <div class="file-size">${formatFileSize(file.metadata?.size || 0)}</div>
-                            <div class="file-actions">
-                                <button class="btn btn-danger" onclick="deleteFile('${file.name}')">حذف</button>
-                                <button class="btn btn-primary" onclick="downloadFile('${file.name}')">تحميل</button>
-                            </div>
-                        </div>
-                    `).join('')}
-                </div>
-            `;
-        }
-        
-        function getFileUrl(fileName) {
-            const { data } = supabase.storage
-                .from('car-images')
-                .getPublicUrl(fileName);
-            return data.publicUrl;
-        }
-        
-        function formatFileSize(bytes) {
-            if (bytes === 0) return '0 Bytes';
-            const k = 1024;
-            const sizes = ['Bytes', 'KB', 'MB', 'GB'];
-            const i = Math.floor(Math.log(bytes) / Math.log(k));
-            return parseFloat((bytes / Math.pow(k, i)).toFixed(2)) + ' ' + sizes[i];
-        }
-        
-        function updateStats() {
-            const totalSize = files.reduce((sum, file) => sum + (file.metadata?.size || 0), 0);
-            
-            document.getElementById('totalFiles').textContent = files.length;
-            document.getElementById('totalSize').textContent = formatFileSize(totalSize);
-            document.getElementById('selectedFiles').textContent = selectedFiles.size;
-        }
-        
-        function toggleFileSelection(fileName) {
-            if (selectedFiles.has(fileName)) {
-                selectedFiles.delete(fileName);
-            } else {
-                selectedFiles.add(fileName);
-            }
-            updateStats();
-        }
-        
-        function selectAll() {
-            const checkboxes = document.querySelectorAll('input[type="checkbox"]');
-            checkboxes.forEach(checkbox => {
-                checkbox.checked = true;
-                selectedFiles.add(checkbox.id.replace('file-', ''));
-            });
-            updateStats();
-        }
-        
-        async function deleteFile(fileName) {
-            if (!confirm(`هل أنت متأكد من حذف الملف "${fileName}"؟`)) {
-                return;
-            }
-            
-            try {
-                console.log('محاولة حذف الملف:', fileName);
-                showMessage(`جاري حذف الملف "${fileName}"...`, 'info');
-                
-                // تأكد من أن اسم الملف صحيح
-                if (!fileName || fileName.trim() === '') {
-                    throw new Error('اسم الملف فارغ');
-                }
-                
-                const { data, error } = await supabase.storage
-                    .from('car-images')
-                    .remove([fileName]);
-                
-                console.log('نتيجة حذف الملف:', { data, error });
-                
-                if (error) {
-                    console.error('خطأ في حذف الملف:', error);
-                    throw error;
-                }
-                
-                showMessage(`تم حذف الملف "${fileName}" بنجاح`, 'success');
-                console.log('تم حذف الملف بنجاح:', fileName);
-                
-                // إعادة تحميل الملفات بعد ثانية
-                setTimeout(() => {
-                    loadFiles();
-                }, 1000);
-                
-            } catch (error) {
-                console.error('Error deleting file:', error);
-                showMessage(`خطأ في حذف الملف: ${error.message}`, 'error');
-            }
-        }
-        
-        async function deleteSelected() {
-            if (selectedFiles.size === 0) {
-                showMessage('لم يتم تحديد أي ملفات للحذف', 'error');
-                return;
-            }
-            
-            showConfirmModal(
-                `حذف ${selectedFiles.size} ملف`,
-                `هل أنت متأكد من حذف ${selectedFiles.size} ملف محدد؟`
-            );
-        }
-        
-        async function deleteAll() {
-            if (files.length === 0) {
-                showMessage('لا توجد ملفات للحذف', 'error');
-                return;
-            }
-            
-            showConfirmModal(
-                'حذف جميع الملفات',
-                `هل أنت متأكد من حذف جميع الملفات (${files.length} ملف)؟`
-            );
-        }
-        
-        async function confirmDelete() {
-            try {
-                const filesToDelete = selectedFiles.size > 0 ? 
-                    Array.from(selectedFiles) : 
-                    files.map(f => f.name);
-                
-                console.log('ملفات للحذف:', filesToDelete);
-                showMessage(`جاري حذف ${filesToDelete.length} ملف...`, 'info');
-                
-                if (filesToDelete.length === 0) {
-                    showMessage('لا توجد ملفات للحذف', 'error');
-                    closeModal();
-                    return;
-                }
-                
-                const { data, error } = await supabase.storage
-                    .from('car-images')
-                    .remove(filesToDelete);
-                
-                console.log('نتيجة حذف الملفات:', { data, error });
-                
-                if (error) {
-                    console.error('خطأ في حذف الملفات:', error);
-                    throw error;
-                }
-                
-                showMessage(`تم حذف ${filesToDelete.length} ملف بنجاح`, 'success');
-                console.log('تم حذف الملفات بنجاح:', filesToDelete);
-                closeModal();
-                
-                // إعادة تحميل الملفات بعد ثانية
-                setTimeout(() => {
-                    loadFiles();
-                }, 1000);
-                
-            } catch (error) {
-                console.error('Error deleting files:', error);
-                showMessage(`خطأ في حذف الملفات: ${error.message}`, 'error');
-                closeModal();
-            }
-        }
-        
-        function downloadFile(fileName) {
-            const url = getFileUrl(fileName);
-            const a = document.createElement('a');
-            a.href = url;
-            a.download = fileName;
-            document.body.appendChild(a);
-            a.click();
-            document.body.removeChild(a);
-        }
-        
-        function showConfirmModal(title, message) {
-            document.getElementById('modalTitle').textContent = title;
-            document.getElementById('modalMessage').textContent = message;
-            document.getElementById('confirmModal').style.display = 'block';
-        }
-        
-        function closeModal() {
-            document.getElementById('confirmModal').style.display = 'none';
-        }
-        
-        function showMessage(message, type) {
-            const messageDiv = document.getElementById('message');
-            messageDiv.className = type === 'error' ? 'error' : 
-                                 type === 'success' ? 'success' : 'info';
-            messageDiv.textContent = message;
-            
-            setTimeout(() => {
-                messageDiv.textContent = '';
-                messageDiv.className = '';
-            }, 5000);
-        }
-        
-        // Close modal when clicking outside
-        window.onclick = function(event) {
-            const modal = document.getElementById('confirmModal');
-            if (event.target === modal) {
-                closeModal();
-            }
-        }
+let losts = [], founds = [], allImages = [], orphanImages = [];
 
-        // دوال إدارة البلاغات
-        async function loadLosts() {
-            try {
-                showMessage('جاري تحميل البلاغات...', 'info');
-                
-                const { data, error } = await supabase
-                    .from('losts')
-                    .select('*')
-                    .order('created_at', { ascending: false });
-                
-                if (error) {
-                    console.error('خطأ في تحميل البلاغات:', error);
-                    throw error;
-                }
-                
-                losts = data || [];
-                renderLosts();
-                showMessage(`تم تحميل ${losts.length} بلاغ بنجاح`, 'success');
-                
-            } catch (error) {
-                console.error('Error loading losts:', error);
-                showMessage(`خطأ في تحميل البلاغات: ${error.message}`, 'error');
-            }
-        }
-        
-        function renderLosts() {
-            const container = document.getElementById('lostsContainer');
-            
-            if (losts.length === 0) {
-                container.innerHTML = '<div class="loading">لا توجد بلاغات</div>';
-                return;
-            }
-            
-            container.innerHTML = `
-                <div class="files-grid">
-                    ${losts.map(lost => `
-                        <div class="file-card">
-                            <img src="${lost.img_url || 'data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMjAwIiBoZWlnaHQ9IjIwMCIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj48cmVjdCB3aWR0aD0iMTAwJSIgaGVpZ2h0PSIxMDAlIiBmaWxsPSIjZGRkIi8+PHRleHQgeD0iNTAlIiB5PSI1MCUiIGZvbnQtZmFtaWx5PSJBcmlhbCIgZm9udC1zaXplPSIxNCIgZmlsbD0iIzk5OSIgdGV4dC1hbmNob3I9Im1pZGRsZSIgZHk9Ii4zZW0iPk5vIEltYWdlPC90ZXh0Pjwvc3ZnPg=='}" 
-                                 alt="صورة البلاغ" 
-                                 class="file-image"
-                                 onerror="this.src='data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMjAwIiBoZWlnaHQ9IjIwMCIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj48cmVjdCB3aWR0aD0iMTAwJSIgaGVpZ2h0PSIxMDAlIiBmaWxsPSIjZGRkIi8+PHRleHQgeD0iNTAlIiB5PSI1MCUiIGZvbnQtZmFtaWx5PSJBcmlhbCIgZm9udC1zaXplPSIxNCIgZmlsbD0iIzk5OSIgdGV4dC1hbmNob3I9Im1pZGRsZSIgZHk9Ii4zZW0iPk5vIEltYWdlPC90ZXh0Pjwvc3ZnPg=='">
-                            <div class="file-name">${lost.car_name || 'سيارة مفقودة'}</div>
-                            <div class="file-size">رقم اللوحة: ${lost.plate_number || 'غير محدد'}</div>
-                            <div class="file-size">رقم الشاسيه: ${lost.chassis_number || 'غير محدد'}</div>
-                            <div class="file-size">الهاتف: ${lost.phone_main || 'غير محدد'}</div>
-                            <div class="file-actions">
-                                <button class="btn btn-danger" onclick="deleteLost(${lost.id}, '${lost.img_url}')">حذف البلاغ</button>
-                            </div>
-                        </div>
-                    `).join('')}
-                </div>
-            `;
-        }
-        
-        async function deleteLost(lostId, imgUrl) {
-            if (!confirm('هل أنت متأكد من حذف هذا البلاغ؟ سيتم حذف الصورة أيضاً.')) {
-                return;
-            }
-            
-            try {
-                showMessage('جاري حذف البلاغ...', 'info');
-                
-                // حذف الصورة من التخزين أولاً
-                if (imgUrl && imgUrl.trim() !== '') {
-                    const fileName = imgUrl.split('/').pop();
-                    console.log('حذف الصورة:', fileName);
-                    
-                    const { error: storageError } = await supabase.storage
-                        .from('car-images')
-                        .remove([fileName]);
-                    
-                    if (storageError) {
-                        console.error('خطأ في حذف الصورة:', storageError);
-                    } else {
-                        console.log('تم حذف الصورة بنجاح');
-                    }
-                }
-                
-                // حذف البلاغ من قاعدة البيانات
-                const { error } = await supabase
-                    .from('losts')
-                    .delete()
-                    .eq('id', lostId);
-                
-                if (error) {
-                    console.error('خطأ في حذف البلاغ:', error);
-                    throw error;
-                }
-                
-                showMessage('تم حذف البلاغ بنجاح', 'success');
-                loadLosts(); // إعادة تحميل القائمة
-                
-            } catch (error) {
-                console.error('Error deleting lost:', error);
-                showMessage(`خطأ في حذف البلاغ: ${error.message}`, 'error');
-            }
-        }
-        
-        async function deleteAllLosts() {
-            if (!confirm('هل أنت متأكد من حذف جميع البلاغات؟ سيتم حذف جميع الصور المرتبطة أيضاً.')) {
-                return;
-            }
-            
-            try {
-                showMessage('جاري حذف جميع البلاغات...', 'info');
-                
-                // حذف جميع الصور المرتبطة
-                for (const lost of losts) {
-                    if (lost.img_url && lost.img_url.trim() !== '') {
-                        const fileName = lost.img_url.split('/').pop();
-                        await supabase.storage.from('car-images').remove([fileName]);
-                    }
-                }
-                
-                // حذف جميع البلاغات
-                const { error } = await supabase
-                    .from('losts')
-                    .delete()
-                    .neq('id', 0); // حذف جميع السجلات
-                
-                if (error) {
-                    console.error('خطأ في حذف البلاغات:', error);
-                    throw error;
-                }
-                
-                showMessage('تم حذف جميع البلاغات بنجاح', 'success');
-                loadLosts();
-                
-            } catch (error) {
-                console.error('Error deleting all losts:', error);
-                showMessage(`خطأ في حذف البلاغات: ${error.message}`, 'error');
-            }
-        }
-        
-        // دوال إدارة الإعلانات
-        async function loadFounds() {
-            try {
-                showMessage('جاري تحميل الإعلانات...', 'info');
-                
-                const { data, error } = await supabase
-                    .from('founds')
-                    .select('*')
-                    .order('created_at', { ascending: false });
-                
-                if (error) {
-                    console.error('خطأ في تحميل الإعلانات:', error);
-                    throw error;
-                }
-                
-                founds = data || [];
-                renderFounds();
-                showMessage(`تم تحميل ${founds.length} إعلان بنجاح`, 'success');
-                
-            } catch (error) {
-                console.error('Error loading founds:', error);
-                showMessage(`خطأ في تحميل الإعلانات: ${error.message}`, 'error');
-            }
-        }
-        
-        function renderFounds() {
-            const container = document.getElementById('foundsContainer');
-            
-            if (founds.length === 0) {
-                container.innerHTML = '<div class="loading">لا توجد إعلانات</div>';
-                return;
-            }
-            
-            container.innerHTML = `
-                <div class="files-grid">
-                    ${founds.map(found => `
-                        <div class="file-card">
-                            <img src="${found.img_url || 'data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMjAwIiBoZWlnaHQ9IjIwMCIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj48cmVjdCB3aWR0aD0iMTAwJSIgaGVpZ2h0PSIxMDAlIiBmaWxsPSIjZGRkIi8+PHRleHQgeD0iNTAlIiB5PSI1MCUiIGZvbnQtZmFtaWx5PSJBcmlhbCIgZm9udC1zaXplPSIxNCIgZmlsbD0iIzk5OSIgdGV4dC1hbmNob3I9Im1pZGRsZSIgZHk9Ii4zZW0iPk5vIEltYWdlPC90ZXh0Pjwvc3ZnPg=='}" 
-                                 alt="صورة الإعلان" 
-                                 class="file-image"
-                                 onerror="this.src='data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMjAwIiBoZWlnaHQ9IjIwMCIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj48cmVjdCB3aWR0aD0iMTAwJSIgaGVpZ2h0PSIxMDAlIiBmaWxsPSIjZGRkIi8+PHRleHQgeD0iNTAlIiB5PSI1MCUiIGZvbnQtZmFtaWx5PSJBcmlhbCIgZm9udC1zaXplPSIxNCIgZmlsbD0iIzk5OSIgdGV4dC1hbmNob3I9Im1pZGRsZSIgZHk9Ii4zZW0iPk5vIEltYWdlPC90ZXh0Pjwvc3ZnPg=='">
-                            <div class="file-name">${found.car_name || 'سيارة موجودة'}</div>
-                            <div class="file-size">رقم اللوحة: ${found.plate_number || 'غير محدد'}</div>
-                            <div class="file-size">رقم الشاسيه: ${found.chassis_number || 'غير محدد'}</div>
-                            <div class="file-size">الهاتف: ${found.phone_main || 'غير محدد'}</div>
-                            <div class="file-actions">
-                                <button class="btn btn-danger" onclick="deleteFound(${found.id}, '${found.img_url}')">حذف الإعلان</button>
-                            </div>
-                        </div>
-                    `).join('')}
-                </div>
-            `;
-        }
-        
-        async function deleteFound(foundId, imgUrl) {
-            if (!confirm('هل أنت متأكد من حذف هذا الإعلان؟ سيتم حذف الصورة أيضاً.')) {
-                return;
-            }
-            
-            try {
-                showMessage('جاري حذف الإعلان...', 'info');
-                
-                // حذف الصورة من التخزين أولاً
-                if (imgUrl && imgUrl.trim() !== '') {
-                    const fileName = imgUrl.split('/').pop();
-                    console.log('حذف الصورة:', fileName);
-                    
-                    const { error: storageError } = await supabase.storage
-                        .from('car-images')
-                        .remove([fileName]);
-                    
-                    if (storageError) {
-                        console.error('خطأ في حذف الصورة:', storageError);
-                    } else {
-                        console.log('تم حذف الصورة بنجاح');
-                    }
-                }
-                
-                // حذف الإعلان من قاعدة البيانات
-                const { error } = await supabase
-                    .from('founds')
-                    .delete()
-                    .eq('id', foundId);
-                
-                if (error) {
-                    console.error('خطأ في حذف الإعلان:', error);
-                    throw error;
-                }
-                
-                showMessage('تم حذف الإعلان بنجاح', 'success');
-                loadFounds(); // إعادة تحميل القائمة
-                
-            } catch (error) {
-                console.error('Error deleting found:', error);
-                showMessage(`خطأ في حذف الإعلان: ${error.message}`, 'error');
-            }
-        }
-        
-        async function deleteAllFounds() {
-            if (!confirm('هل أنت متأكد من حذف جميع الإعلانات؟ سيتم حذف جميع الصور المرتبطة أيضاً.')) {
-                return;
-            }
-            
-            try {
-                showMessage('جاري حذف جميع الإعلانات...', 'info');
-                
-                // حذف جميع الصور المرتبطة
-                for (const found of founds) {
-                    if (found.img_url && found.img_url.trim() !== '') {
-                        const fileName = found.img_url.split('/').pop();
-                        await supabase.storage.from('car-images').remove([fileName]);
-                    }
-                }
-                
-                // حذف جميع الإعلانات
-                const { error } = await supabase
-                    .from('founds')
-                    .delete()
-                    .neq('id', 0); // حذف جميع السجلات
-                
-                if (error) {
-                    console.error('خطأ في حذف الإعلانات:', error);
-                    throw error;
-                }
-                
-                showMessage('تم حذف جميع الإعلانات بنجاح', 'success');
-                loadFounds();
-                
-            } catch (error) {
-                console.error('Error deleting all founds:', error);
-                showMessage(`خطأ في حذف الإعلانات: ${error.message}`, 'error');
-            }
-        }
+function showMessage(msg, type) {
+    const el = document.getElementById('message');
+    el.textContent = msg;
+    el.className = type || '';
+    setTimeout(() => { el.textContent = ''; el.className = ''; }, 4000);
+}
 
-        async function reviewMatches() {
-            if (!confirm('هل أنت متأكد أنك تريد مراجعة جميع التطابقات الآن؟')) return;
-            showMessage('جاري مراجعة التطابقات...', 'info');
-            try {
-                const res = await fetch('http://localhost:4000/review-matches', { method: 'POST' });
-                const result = await res.json();
-                if (res.ok) {
-                    showMessage('تمت مراجعة التطابقات بنجاح! قد يستغرق التنفيذ بضع ثوانٍ حسب عدد البيانات.', 'success');
-                } else {
-                    showMessage('حدث خطأ أثناء مراجعة التطابقات: ' + (result.error || ''), 'error');
-                }
-            } catch (err) {
-                showMessage('خطأ في الاتصال بالسيرفر: ' + err.message, 'error');
-            }
+async function loadLosts() {
+    document.getElementById('lostsTable').innerHTML = '<div class="loading">جاري التحميل...</div>';
+    const { data, error } = await supabase.from('losts').select('*').order('created_at', { ascending: false });
+    if (error) { showMessage('خطأ في تحميل المفقودات: ' + error.message, 'error'); return; }
+    losts = data || [];
+    document.getElementById('lostsCount').textContent = losts.length;
+    renderLostsTable();
+}
+
+function renderLostsTable() {
+    if (!losts.length) { document.getElementById('lostsTable').innerHTML = '<div class="loading">لا توجد مفقودات</div>'; return; }
+    let html = `<table><tr><th>الصورة</th><th>الاسم</th><th>رقم اللوحة</th><th>رقم الشاسيه</th><th>الهاتف</th><th>البريد</th><th>الموقع</th><th>تاريخ النشر</th><th>حذف</th></tr>`;
+    for (const l of losts) {
+        html += `<tr>
+            <td>${l.img_url ? `<img class='thumb' src='${l.img_url}' />` : '-'}</td>
+            <td>${l.car_name || '-'}</td>
+            <td>${l.plate_number || '-'}</td>
+            <td>${l.chassis_number || '-'}</td>
+            <td>${l.phone_main || '-'}</td>
+            <td>${l.email || '-'}</td>
+            <td>${l.location || '-'}</td>
+            <td>${l.created_at ? l.created_at.split('T')[0] : '-'}</td>
+            <td><button class='btn btn-danger' onclick='deleteLost(${l.id}, "${l.img_url || ''}")'>حذف</button></td>
+        </tr>`;
+    }
+    html += '</table>';
+    document.getElementById('lostsTable').innerHTML = html;
+}
+
+async function deleteLost(id, imgUrl) {
+    if (!confirm('هل أنت متأكد من حذف هذا البلاغ؟')) return;
+    if (imgUrl) {
+        const fileName = imgUrl.split('/').pop();
+        await supabase.storage.from('car-images').remove([fileName]);
+    }
+    await supabase.from('losts').delete().eq('id', id);
+    showMessage('تم حذف البلاغ', 'success');
+    loadLosts();
+    loadOrphanImages();
+}
+
+async function deleteAllLosts() {
+    if (!confirm('هل أنت متأكد من حذف جميع المفقودات؟')) return;
+    for (const l of losts) {
+        if (l.img_url) {
+            const fileName = l.img_url.split('/').pop();
+            await supabase.storage.from('car-images').remove([fileName]);
         }
-    </script>
+    }
+    await supabase.from('losts').delete().neq('id', 0);
+    showMessage('تم حذف جميع المفقودات', 'success');
+    loadLosts();
+    loadOrphanImages();
+}
+
+async function loadFounds() {
+    document.getElementById('foundsTable').innerHTML = '<div class="loading">جاري التحميل...</div>';
+    const { data, error } = await supabase.from('founds').select('*').order('created_at', { ascending: false });
+    if (error) { showMessage('خطأ في تحميل الموجودات: ' + error.message, 'error'); return; }
+    founds = data || [];
+    document.getElementById('foundsCount').textContent = founds.length;
+    renderFoundsTable();
+}
+
+function renderFoundsTable() {
+    if (!founds.length) { document.getElementById('foundsTable').innerHTML = '<div class="loading">لا توجد موجودات</div>'; return; }
+    let html = `<table><tr><th>الصورة</th><th>الاسم</th><th>رقم اللوحة</th><th>رقم الشاسيه</th><th>الهاتف</th><th>البريد</th><th>الموقع</th><th>تاريخ النشر</th><th>حذف</th></tr>`;
+    for (const f of founds) {
+        html += `<tr>
+            <td>${f.img_url ? `<img class='thumb' src='${f.img_url}' />` : '-'}</td>
+            <td>${f.car_name || '-'}</td>
+            <td>${f.plate_number || '-'}</td>
+            <td>${f.chassis_number || '-'}</td>
+            <td>${f.phone_main || '-'}</td>
+            <td>${f.email || '-'}</td>
+            <td>${f.location || '-'}</td>
+            <td>${f.created_at ? f.created_at.split('T')[0] : '-'}</td>
+            <td><button class='btn btn-danger' onclick='deleteFound(${f.id}, "${f.img_url || ''}")'>حذف</button></td>
+        </tr>`;
+    }
+    html += '</table>';
+    document.getElementById('foundsTable').innerHTML = html;
+}
+
+async function deleteFound(id, imgUrl) {
+    if (!confirm('هل أنت متأكد من حذف هذا الإعلان؟')) return;
+    if (imgUrl) {
+        const fileName = imgUrl.split('/').pop();
+        await supabase.storage.from('car-images').remove([fileName]);
+    }
+    await supabase.from('founds').delete().eq('id', id);
+    showMessage('تم حذف الإعلان', 'success');
+    loadFounds();
+    loadOrphanImages();
+}
+
+async function deleteAllFounds() {
+    if (!confirm('هل أنت متأكد من حذف جميع الموجودات؟')) return;
+    for (const f of founds) {
+        if (f.img_url) {
+            const fileName = f.img_url.split('/').pop();
+            await supabase.storage.from('car-images').remove([fileName]);
+        }
+    }
+    await supabase.from('founds').delete().neq('id', 0);
+    showMessage('تم حذف جميع الموجودات', 'success');
+    loadFounds();
+    loadOrphanImages();
+}
+
+async function loadOrphanImages() {
+    document.getElementById('orphansTable').innerHTML = '<div class="loading">جاري التحميل...</div>';
+    // جلب كل الصور من التخزين
+    const { data: images, error } = await supabase.storage.from('car-images').list();
+    if (error) { showMessage('خطأ في تحميل الصور: ' + error.message, 'error'); return; }
+    allImages = images || [];
+    // جلب كل img_url من losts و founds
+    const lostImgs = losts.map(l => l.img_url ? l.img_url.split('/').pop() : null).filter(Boolean);
+    const foundImgs = founds.map(f => f.img_url ? f.img_url.split('/').pop() : null).filter(Boolean);
+    // الصور orphan هي التي ليست في lostImgs ولا foundImgs
+    orphanImages = allImages.filter(img => !lostImgs.includes(img.name) && !foundImgs.includes(img.name));
+    document.getElementById('orphanCount').textContent = orphanImages.length;
+    renderOrphansTable();
+}
+
+function renderOrphansTable() {
+    if (!orphanImages.length) { document.getElementById('orphansTable').innerHTML = '<div class="loading">لا توجد صور غير مرتبطة</div>'; return; }
+    let html = `<table><tr><th>الصورة</th><th>اسم الملف</th><th>الحجم</th><th>تاريخ الإنشاء</th><th>حذف</th></tr>`;
+    for (const img of orphanImages) {
+        const url = supabase.storage.from('car-images').getPublicUrl(img.name).data.publicUrl;
+        html += `<tr>
+            <td><img class='thumb' src='${url}' /></td>
+            <td>${img.name}</td>
+            <td>${formatFileSize(img.metadata?.size || 0)}</td>
+            <td>${img.created_at ? img.created_at.split('T')[0] : '-'}</td>
+            <td><button class='btn btn-danger' onclick='deleteOrphan("${img.name}")'>حذف</button></td>
+        </tr>`;
+    }
+    html += '</table>';
+    document.getElementById('orphansTable').innerHTML = html;
+}
+
+async function deleteOrphan(name) {
+    if (!confirm('هل أنت متأكد من حذف هذه الصورة؟')) return;
+    await supabase.storage.from('car-images').remove([name]);
+    showMessage('تم حذف الصورة', 'success');
+    loadOrphanImages();
+}
+
+async function deleteAllOrphans() {
+    if (!confirm('هل أنت متأكد من حذف جميع الصور غير المرتبطة؟')) return;
+    for (const img of orphanImages) {
+        await supabase.storage.from('car-images').remove([img.name]);
+    }
+    showMessage('تم حذف جميع الصور غير المرتبطة', 'success');
+    loadOrphanImages();
+}
+
+function formatFileSize(bytes) {
+    if (bytes === 0) return '0 Bytes';
+    const k = 1024;
+    const sizes = ['Bytes', 'KB', 'MB', 'GB'];
+    const i = Math.floor(Math.log(bytes) / Math.log(k));
+    return parseFloat((bytes / Math.pow(k, i)).toFixed(2)) + ' ' + sizes[i];
+}
+
+// تحميل البيانات عند فتح الصفحة
+window.onload = function() {
+    loadLosts();
+    loadFounds();
+    setTimeout(loadOrphanImages, 1000); // بعد تحميل الجداول
+}
+</script>
 </body>
 </html> 

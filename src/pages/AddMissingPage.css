@@ -125,6 +125,10 @@
   font-size: 16px;
   text-align: center;
 }
+.plate-number:focus {
+  outline: none;
+  border-color: var(--black);
+}
 
 .plate-letter {
   padding: 5px;
@@ -191,7 +195,31 @@
   color: var(--sc-black);
   font-family: 'IBM Plex Sans Arabic', sans-serif;
 }
+.captcha-container{
+  display: flex;
+  flex-direction: column;
+}
+.captcha-container label{
+  font-family: 'IBM Plex Sans Arabic', sans-serif;
+  font-size: 14px;
+  font-weight: 700;
+  color: var(--black);
+  text-align: right;
+}
+.captcha-container input{
+ background-color: var(--white);
+ border: 2px solid var(--sc-White);
+ border-radius: 8px;
+ padding: 4px;
+ font-family: 'IBM Plex Sans Arabic', sans-serif;
+ font-size: 14px;
+ font-weight: 700;
+}
+.captcha-container input:focus{
+    outline: none;
+    border-color: var(--black);
 
+}
 .submit-button {
   position: absolute;
   width: 80%;

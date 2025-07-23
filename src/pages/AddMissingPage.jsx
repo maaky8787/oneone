@@ -4,7 +4,7 @@ import { ArrowRight } from 'lucide-react'
 import './AddMissingPage.css'
 import { supabase } from '../supabase';
 import { v4 as uuidv4 } from 'uuid'; // تحتاج تثبيت uuid: npm install uuid
-import React from 'react'; // Import React for useEffect
+import React, { useEffect } from 'react'; // Import React for useEffect
 
 const API_URL = import.meta.env.VITE_API_URL;
 
@@ -28,9 +28,24 @@ function AddMissingPage() {
   const [isSubmitting, setIsSubmitting] = useState(false) // منع الضغط المتكرر
   const [progressMessage, setProgressMessage] = useState('') // رسالة التقدم
   const [phoneMainError, setPhoneMainError] = useState(false);
-  const [plateNumError, setPlateNumError] = useState(false);
-  const [plateLetterError, setPlateLetterError] = useState(false);
   const navigate = useNavigate()
+  const [num1, setNum1] = useState(() => Math.floor(Math.random() * 10));
+  const [num2, setNum2] = useState(() => Math.floor(Math.random() * 10));
+  const [userAnswer, setUserAnswer] = useState('');
+  const [isAnswerCorrect, setIsAnswerCorrect] = useState(false);
+
+  // دالة إعادة توليد الكابتشا
+  const regenerateCaptcha = () => {
+    setNum1(Math.floor(Math.random() * 10));
+    setNum2(Math.floor(Math.random() * 10));
+    setUserAnswer('');
+    setIsAnswerCorrect(false);
+  };
+
+  // تحقق من صحة الإجابة
+  useEffect(() => {
+    setIsAnswerCorrect(Number(userAnswer) === num1 + num2);
+  }, [userAnswer, num1, num2]);
 
   // منع الخروج من الصفحة أثناء التحميل
   const handleBeforeUnload = (e) => {
@@ -427,11 +442,24 @@ function AddMissingPage() {
                     required
                   />
                 </div>
+              <div className='captcha-container'>
+                <label>تحقق: كم حاصل جمع {num1} + {num2}؟</label>
+                <input
+                  type="text"
+                  value={userAnswer}
+                  onChange={e => setUserAnswer(e.target.value)}
+                  style={{border: (!isAnswerCorrect && userAnswer !== '') ? '2px solid red' : undefined }}
+                  required
+                />
+                <span style={{color:'red',fontSize:'10px',fontWeight:'700'}}>
+                  لا يمكنك رفع اعلان إذا لم تكن الإجابة صحيحة
+                </span>
+              </div>
               </div>
               <button 
                 type="submit" 
                 className="submit-button missing-submit" 
-                disabled={uploading || isSubmitting}
+                disabled={uploading || isSubmitting || !isAnswerCorrect}
               >
                 {uploading || isSubmitting ? (
                   <span>
