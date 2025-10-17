@@ -74,7 +74,8 @@ function CarDetailsModal({ car, onClose }) {
             <p>رقم اضافي</p>
             <pre className="pre">  :</pre>
             <p className="car-phone-secondary">
-              {(!car.phone_secondary || car.phone_secondary === '0' || car.phone_secondary.length < 7) ? 'لا يوجد' : car.phone_secondary}
+              {(!car.phone_secondary || car.phone_secondary === '0' || car.phone_secondary.length < 7) ? 'لا يوجد' : car.phone_secondary}||
+              {car.show_phone_public === false || car.show_phone_public === 'no'? 'رقم مخفي' : car.phone_secondary}
             </p>
           </div>
 

@@ -1,0 +1,108 @@
+<!doctype html>
+<html lang="ar" dir="rtl">
+<head>
+  <meta charset="utf-8" />
+  <title>اختبار API - FindMyCar</title>
+  <style>
+    body { font-family: Tahoma, Arial; margin: 20px; }
+    textarea, input { width: 100%; padding: 8px; margin: 6px 0; }
+    .row { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
+    .card { border: 1px solid #ddd; padding: 12px; border-radius: 8px; }
+    pre { background: #f7f7f7; padding: 10px; border-radius: 6px; overflow:auto; }
+    button { padding: 10px 14px; }
+    small { color: #555; }
+  </style>
+</head>
+<body>
+  <h1>اختبار API - FindMyCar</h1>
+  <label>API_URL</label>
+  <input id="api" value="http://localhost:4000" />
+
+  <div class="row">
+    <div class="card">
+      <h3>اختبار /add-lost (بلاغ)</h3>
+      <small>عدّل الحقول حسب الحاجة</small>
+      <textarea id="lostPayload" rows="12">{
+  "car_name": "تويوتا",
+  "model": "2015",
+  "color": "أبيض",
+  "plate_number": "1111:خ4",
+  "chassis_number": "CH123456",
+  "location": "الرياض - العليا",
+  "phone_main": "0500000000",
+  "phone_secondary": "0",
+  "show_phone_public": "yes",
+  "email": "you@example.com",
+  "img_url": ""
+}</textarea>
+      <button onclick="send('add-lost','lostPayload')">إرسال بلاغ</button>
+      <h4>النتيجة</h4>
+      <pre id="lostResult"></pre>
+    </div>
+
+    <div class="card">
+      <h3>اختبار /add-existing (إعلان)</h3>
+      <small>عدّل الحقول حسب الحاجة</small>
+      <textarea id="existingPayload" rows="12">{
+  "car_name": "تويوتا",
+  "model": "2015",
+  "color": "أسود",
+  "plate_number": "2222:خ3",
+  "chassis_number": "CH654321",
+  "location": "جدة - الشاطئ",
+  "phone_main": "0511111111",
+  "phone_secondary": "0",
+  "show_phone_public": "yes",
+  "email": "you@example.com",
+  "img_url": ""
+}</textarea>
+      <button onclick="send('add-existing','existingPayload')">إرسال إعلان</button>
+      <h4>النتيجة</h4>
+      <pre id="existingResult"></pre>
+    </div>
+  </div>
+
+  <script>
+    async function send(endpoint, payloadId) {
+      const API_URL = document.getElementById('api').value.trim().replace(/\/$/, '');
+      const payloadRaw = document.getElementById(payloadId).value;
+      const out = document.getElementById(endpoint === 'add-lost' ? 'lostResult' : 'existingResult');
+      out.textContent = '...';
+
+      let payload;
+      try {
+        payload = JSON.parse(payloadRaw);
+      } catch (e) {
+        out.textContent = 'خطأ: صيغة JSON غير صحيحة في الحقول.\n' + e.message;
+        return;
+      }
+
+      try {
+        const res = await fetch(API_URL + '/' + endpoint, {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify(payload)
+        });
+
+        const statusLine = `Status: ${res.status} ${res.statusText}`;
+        const ct = res.headers.get('content-type') || '';
+        let bodyText = await res.text();
+
+        // حاول تحويل النص لـ JSON إن كان بالظاهر JSON
+        let parsed = null, parseErr = null;
+        if (ct.includes('application/json') || (bodyText.trim().startsWith('{') || bodyText.trim().startsWith('['))) {
+          try { parsed = JSON.parse(bodyText); } catch (e) { parseErr = e; }
+        }
+
+        out.textContent =
+          statusLine + '\n' +
+          'Content-Type: ' + ct + '\n' +
+          (parseErr ? ('JSON Parse Error: ' + parseErr.message + '\n') : '') +
+          '--- Raw Body ---\n' + (bodyText || '[EMPTY]');
+      } catch (err) {
+        out.textContent = 'Network/Fetch Error: ' + err.message;
+      }
+    }
+  </script>
+</body>
+</html>
